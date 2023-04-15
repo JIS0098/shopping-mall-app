@@ -6,6 +6,7 @@ import ProductDetail from './page/ProductDetail';
 import Navbar from './component/Navbar';
 
 
+
 //1. 전체 상품페이지, 로그인페이지, 상품상세 페이지가 필요하다.
 //2. 전체 상품페이지 -전체 상품을 볼수있다
 //3. 로그인버튼을 누르면 로그인 페이지가 나온다.
@@ -18,7 +19,7 @@ import Navbar from './component/Navbar';
 
 
 function App() {
-  
+
   return (
 
     <div className="App">

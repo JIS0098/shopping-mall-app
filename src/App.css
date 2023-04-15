@@ -40,3 +40,23 @@
     border: none;
     margin-left: 5px;
 }
+
+
+.product-card{
+    
+}
+
+.product-card:hover{
+    transform: scale(1.1);
+
+}
+
+.login-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  
+
+}
+

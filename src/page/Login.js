@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
 
 const Login = () => {
   return (
-    <div>
-      로그인 페이지
+    <div className="login-main">
+      <div className="email">
+        <div>Email address</div>
+        <input type="text" value={"Enter email"} />
+      </div>
+      <div className="Password">
+        <div>Password</div>
+        <input type="text" value={"Password"} />
+      </div>
+      <button>Login</button>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
