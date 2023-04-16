@@ -42,21 +42,46 @@
 }
 
 
-.product-card{
-    
+.product-card {
+    margin-bottom: 30px;
+    width: 304px;
+
+
 }
 
-.product-card:hover{
+.product-card img {
+    width: 304px;
+}
+
+.product-card:hover {
     transform: scale(1.1);
 
 }
 
-.login-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  
 
+.product-choice{
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.product-choice,.product-new{
+    font-size: 11px;
+}
+
+
+
+.nav-section img {
+    width: 85px;
+    margin-top: -20px;
+    margin-bottom: 25px;
+}
+
+.login-button {
+    cursor: pointer
+}
+
+.product-img{
+    display: flex;
+    justify-content: flex-end;
 }
 

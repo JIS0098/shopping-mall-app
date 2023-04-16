@@ -1,9 +1,10 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route,} from 'react-router-dom'
 import './App.css';
 import ProductAll from './page/ProductAll';
 import Login from './page/Login';
-import ProductDetail from './page/ProductDetail';
 import Navbar from './component/Navbar';
+import { useState } from 'react';
+import PrivateRoute from './route/PrivateRoute';
 
 
 
@@ -19,6 +20,9 @@ import Navbar from './component/Navbar';
 
 
 function App() {
+  const [authenticate,setAuthenticate] =useState(false) 
+
+
 
   return (
 
@@ -26,8 +30,8 @@ function App() {
       <Navbar/> {/*페이지 변경 시에도 고정을 위해 <Navbar/>를 <Routes> 보다 상단에 적어준다*/}
       <Routes>
         <Route path="/" element={<ProductAll/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/product/:id" element={<ProductDetail/>}/>
+        <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>}/>
+        <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate}/>}/>
       </Routes>
     </div>
   );

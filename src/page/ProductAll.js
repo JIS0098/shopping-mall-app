@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../component/ProductCard";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 
-const ProductAll = () => {
+const ProductAll = ({ PrivateRoute }) => {
   const [productList, setProductList] = useState([]);
+  const goToDetail = () => {
+    PrivateRoute();
+  };
+
   const getProducts = async () => {
     let url = "http://localhost:5000/products";
     let response = await fetch(url);
@@ -22,7 +26,7 @@ const ProductAll = () => {
         <Row>
           {productList.map((menu) => (
             <Col lg={3}>
-              <ProductCard item={menu} />
+              <ProductCard item={menu} onClick={goToDetail} />
             </Col>
           ))}
         </Row>

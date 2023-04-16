@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
-  return (
-    <div>
-      상품 디테일 페이지
-    </div>
-  )
-}
+  let { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const getProductDetail = async () => {
+    let url = `http://localhost:5000/products/${id}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    setProduct(data);
+  };
 
-export default ProductDetail
+  // API를 호출할땐 항 useEffect를 사용한다.
+  useEffect(() => {
+    getProductDetail();
+  }, []);
+  return <Container>
+    <Row>
+      <Col className="product-img">
+        <img src={product?.img}/>
+      </Col>
+      <Col>
+        <div>{product?.title}</div>
+        <div>{product?.price}</div>
+        <div>{product?.choice=== true ? "Conscious choice" : ""}</div>
+      </Col>
+    </Row>
+  </Container>;
+};
+
+export default ProductDetail;
