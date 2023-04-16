@@ -15,12 +15,17 @@ const Navbar = () => {
     "Sale",
     "지속가능성",
   ];
-  
-  const navigate = useNavigate();
-  const goToLoginPage =()=>{
-    navigate("/login")
 
-  }
+  const navigate = useNavigate();
+  const goToLoginPage = () => {
+    navigate("/login");
+  };
+  const search = (event) => {
+    if (event.key === "Enter") {  //입력한 검색어를 읽어와서 url을 바꿔준다
+      let keyword = event.target.value; //원하는 상품으로 url 바꾸기
+      navigate(`/?q=${keyword}`)
+    }
+  };
 
   return (
     <div>
@@ -44,7 +49,11 @@ const Navbar = () => {
         </ul>
         <div className="menu-search">
           <FontAwesomeIcon icon={faSearch} />
-          <input type="text" value={'제품검색'} />
+          <input
+            type="text"
+            onKeyDown={(event) => search(event)}
+          />
+          {/*컨트롤 쉬프트는 인식x*/}
         </div>
       </div>
     </div>

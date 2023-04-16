@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const ProductDetail = () => {
   let { id } = useParams();
@@ -12,22 +13,37 @@ const ProductDetail = () => {
     setProduct(data);
   };
 
-  // API를 호출할땐 항 useEffect를 사용한다.
   useEffect(() => {
     getProductDetail();
   }, []);
-  return <Container>
-    <Row>
-      <Col className="product-img">
-        <img src={product?.img}/>
-      </Col>
-      <Col>
-        <div>{product?.title}</div>
-        <div>{product?.price}</div>
-        <div>{product?.choice=== true ? "Conscious choice" : ""}</div>
-      </Col>
-    </Row>
-  </Container>;
+  return (
+    <Container>
+      <Row>
+        <Col className="product-img">
+          <img src={product?.img} />
+        </Col>
+        <Col>
+          <div className="product-title">{product?.title}</div>
+          <div className="product-price">₩ {product?.price}</div>
+          <div className="product-new">
+            {product?.choice === true ? "Conscious choice" : ""}
+          </div>
+          <Dropdown>
+            <Dropdown.Toggle id="dropdown-basic">
+              사이즈 선택
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">S</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">M</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">L</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <button className="add-but"> 추가</button>
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default ProductDetail;

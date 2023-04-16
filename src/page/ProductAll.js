@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../component/ProductCard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom";
 
-const ProductAll = ({ PrivateRoute }) => {
+const ProductAll = () => {
   const [productList, setProductList] = useState([]);
-  const goToDetail = () => {
-    PrivateRoute();
-  };
-
+  const [query, setQuery] = useSearchParams("");
   const getProducts = async () => {
-    let url = "http://localhost:5000/products";
+    let searchQuery=query.get("q") ||"";
+    let url = `http://localhost:5000/products?q=${searchQuery}`;
     let response = await fetch(url);
     let data = await response.json();
     setProductList(data);
@@ -18,7 +17,7 @@ const ProductAll = ({ PrivateRoute }) => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [query]); //query가 바뀌면 다시 렌더링해줘
 
   return (
     <div>
@@ -26,7 +25,7 @@ const ProductAll = ({ PrivateRoute }) => {
         <Row>
           {productList.map((menu) => (
             <Col lg={3}>
-              <ProductCard item={menu} onClick={goToDetail} />
+              <ProductCard item={menu}/>
             </Col>
           ))}
         </Row>
