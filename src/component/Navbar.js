@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ setAuthenticate, authenticate }) => {
   const menuList = [
     "여성",
     "Divided",
@@ -21,22 +21,39 @@ const Navbar = () => {
     navigate("/login");
   };
   const search = (event) => {
-    if (event.key === "Enter") {  //입력한 검색어를 읽어와서 url을 바꿔준다
+    if (event.key === "Enter") {
+      //입력한 검색어를 읽어와서 url을 바꿔준다
       let keyword = event.target.value; //원하는 상품으로 url 바꾸기
-      navigate(`/?q=${keyword}`)
+      navigate(`/?q=${keyword}`);
     }
   };
+  const goToHomePage = () => {
+    navigate("/");
+  };
+
+ 
 
   return (
     <div>
       <div>
         <div className="login-button">
-          <FontAwesomeIcon icon={faUser} />
-          <div onClick={goToLoginPage}>로그인</div>
-        </div>
+        {authenticate ? (
+          <div onClick={() => setAuthenticate(false)}>
+            <FontAwesomeIcon icon={faUser} />
+            <span style={{ cursor: "pointer" }}>로그아웃</span>
+          </div>
+        ) : (
+          <div onClick={() => navigate("/login")}>
+            <FontAwesomeIcon icon={faUser} />
+            <span style={{ cursor: "pointer" }}>로그인</span>
+          </div>
+        )}
       </div>
+      </div>
+
       <div className="nav-section">
         <img
+          onClick={goToHomePage}
           width={100}
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/800px-H%26M-Logo.svg.png"
         ></img>
@@ -49,10 +66,7 @@ const Navbar = () => {
         </ul>
         <div className="menu-search">
           <FontAwesomeIcon icon={faSearch} />
-          <input
-            type="text"
-            onKeyDown={(event) => search(event)}
-          />
+          <input type="text" onKeyDown={(event) => search(event)} />
           {/*컨트롤 쉬프트는 인식x*/}
         </div>
       </div>

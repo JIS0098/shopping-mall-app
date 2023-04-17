@@ -27,7 +27,7 @@ function App() {
   return (
 
     <div className="App">
-      <Navbar/> {/*페이지 변경 시에도 고정을 위해 <Navbar/>를 <Routes> 보다 상단에 적어준다*/}
+      <Navbar setAuthenticate={setAuthenticate} authenticate={authenticate}/> {/*페이지 변경 시에도 고정을 위해 <Navbar/>를 <Routes> 보다 상단에 적어준다*/}
       <Routes>
         <Route path="/" element={<ProductAll/>}/>
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>}/>
