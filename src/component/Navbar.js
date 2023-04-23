@@ -37,7 +37,7 @@ const Navbar = ({ setAuthenticate, authenticate }) => {
     <div>
       <div>
         <div className="login-button">
-        {authenticate ? (
+        {authenticate ? (  // 삼항연산식은 리턴부분에도 사용이 가능하다.
           <div onClick={() => setAuthenticate(false)}>
             <FontAwesomeIcon icon={faUser} />
             <span style={{ cursor: "pointer" }}>로그아웃</span>
