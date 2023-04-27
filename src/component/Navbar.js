@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Navbar = ({ setAuthenticate, authenticate }) => {
+const Navbar = () => {
   const menuList = [
     "여성",
     "Divided",
@@ -31,24 +32,24 @@ const Navbar = ({ setAuthenticate, authenticate }) => {
     navigate("/");
   };
 
- 
+  const authenticate = useSelector((state)=>state.auth.authenticate);
 
   return (
     <div>
       <div>
         <div className="login-button">
-        {authenticate ? (  // 삼항연산식은 리턴부분에도 사용이 가능하다.
-          <div onClick={() => setAuthenticate(false)}>
-            <FontAwesomeIcon icon={faUser} />
-            <span style={{ cursor: "pointer" }}>로그아웃</span>
-          </div>
-        ) : (
-          <div onClick={() => navigate("/login")}>
-            <FontAwesomeIcon icon={faUser} />
-            <span style={{ cursor: "pointer" }}>로그인</span>
-          </div>
-        )}
-      </div>
+          {authenticate ? ( // 삼항연산식은 리턴부분에도 사용이 가능하다.
+            <div onClick={() => authenticate(false)}>
+              <FontAwesomeIcon icon={faUser} />
+              <span style={{ cursor: "pointer" }}>로그아웃</span>
+            </div>
+          ) : (
+            <div onClick={() => navigate("/login")}>
+              <FontAwesomeIcon icon={faUser} />
+              <span style={{ cursor: "pointer" }}>로그인</span>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="nav-section">
