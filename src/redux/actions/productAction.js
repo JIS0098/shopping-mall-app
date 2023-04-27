@@ -8,4 +8,4 @@ function getProducts( searchQuery){
 }
 }
 
-export const produtAction ={getProducts}
+export const productAction ={getProducts}
