@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { produtAction } from "../redux/actions/productAction";
 const ProductAll = () => {
-  const productList = useSelector((state)=>state.productList)
+  const productList = useSelector((state)=>state.product.productList)
   const [query, setQuery] = useSearchParams("");
   let dispatch =useDispatch();
   const getProducts = async () => {
