@@ -1,7 +1,7 @@
 let initialState={
     productList:[]}
 
-function reducer(state=initialState,action){
+function productReducer(state=initialState,action){
 	let {type,payload} = action;
     switch(type){
         case "GET_PRODUCT_SUCCESS":
@@ -12,4 +12,4 @@ function reducer(state=initialState,action){
     
 }
 
-export default reducer 
+export default productReducer
