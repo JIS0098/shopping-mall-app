@@ -32,7 +32,7 @@ const Navbar = () => {
     navigate("/");
   };
 
-  const authenticate = useSelector((state)=>state.auth.authenticate);
+  const authenticate = useSelector((state)=>state.auth.authenticate)
 
   return (
     <div>
